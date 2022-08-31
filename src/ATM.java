@@ -1,8 +1,8 @@
 import java.util.*;
 public class ATM {
-	private HashMap<Integer, Double> accs = new HashMap<Integer, Double>();
-	public ATM(HashMap<Integer, Double> accs) {
-		this.accs = accs;
+	private HashMap<Integer, Double> accs;
+	public ATM() {
+		accs = new HashMap<Integer, Double>();
 	}
 	public void openAccount(int ID) {
 		accs.put(ID, 0.0);
@@ -17,17 +17,17 @@ public class ATM {
 	}
 	public double checkBalance(int ID) {
 		if(!accs.containsKey(ID))
-			return(0.0);
-		return(accs.get(ID));
+			return 0.0;
+		return(Math.round(100*accs.get(ID))/100.0);
 	}
 	public boolean depositMoney(int ID, double deposit) {
-		if(!accs.containsKey(ID))
+		if(!accs.containsKey(ID) || deposit < 0.0)
 			return false;
 		accs.put(ID, accs.get(ID) + deposit);
 		return true;
 	}
 	public boolean withdrawMoney(int ID, double withdrawl) {
-		if(!accs.containsKey(ID) || accs.get(ID) < withdrawl)
+		if(!accs.containsKey(ID) || accs.get(ID) < withdrawl || withdrawl < 0.0)
 			return false;
 		accs.put(ID, accs.get(ID) - withdrawl);
 		return true;

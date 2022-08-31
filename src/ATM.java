@@ -30,6 +30,6 @@ public class ATM {
 		if(!accs.containsKey(ID) || accs.get(ID) < withdrawl || withdrawl < 0.0)
 			return false;
 		accs.put(ID, accs.get(ID) - withdrawl);
-		return true;
+		return true; //test
 	}
 }
